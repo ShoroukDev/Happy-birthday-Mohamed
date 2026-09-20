@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>From My Heart To Yours ♥️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --sunset-top: #fce4dc;
+      --sunset-mid: #fcd5ce;
+      --sunset-glow: #f8edeb;
+      --sea-calm: #e8e8e4;
+      --accent-coral: #ff758f;
+      --accent-deep: #b33951;
+      --card-bg: rgba(255, 255, 255, 0.78);
+      --text-main: #4a3e3d;
+      --text-sub: #7a6a68;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(175deg, #fde2e4 0%, #fed1c6 35%, #ffd7ba 70%, #d8e2dc 100%);
+      background-attachment: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--text-main);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* قلوب متطايرة */
+    .hearts-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 99;
+      overflow: hidden;
+    }
+
+    .heart-floating {
+      position: absolute;
+      color: #ff3366;
+      font-size: 16px;
+      animation: floatUp 4s linear forwards;
+      opacity: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(105vh) scale(0.6) rotate(0deg);
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 0.85;
+      }
+
+      80% {
+        opacity: 0.85;
+      }
+
+      100% {
+        transform: translateY(-10vh) scale(1.2) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    .app-card {
+      width: 92%;
+      max-width: 440px;
+      min-height: 560px;
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: 28px;
+      box-shadow: 0 15px 35px rgba(184, 115, 107, 0.18),
+        0 2px 10px rgba(0, 0, 0, 0.04);
+      padding: 28px 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin: 20px 0;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      transition: all 0.3s ease;
+    }
+
+    .page {
+      display: none;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      animation: fadeIn 0.45s ease-out forwards;
+    }
+
+    .page.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .btn-back {
+      margin-top: 24px;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid #ffd1c6;
+      color: var(--text-main);
+      padding: 9px 24px;
+      border-radius: 22px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: all 0.2s;
+    }
+
+    .btn-back:hover {
+      background: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    .media-box {
+      width: 190px;
+      height: 190px;
+      border-radius: 22px;
+      box-shadow: 0 10px 25px rgba(255, 117, 143, 0.25);
+      margin-bottom: 20px;
+      border: 3px solid #ffffff;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #fdf0ed;
+    }
+
+    .avatar-img,
+    .avatar-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .avatar-video {
+      display: none;
+    }
+
+    .question-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #702f3b;
+      margin-bottom: 6px;
+      direction: ltr;
+    }
+
+    .emoji-sub {
+      font-size: 1.8rem;
+      margin-bottom: 24px;
+    }
+
+    .buttons-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
+    }
+
+    .btn-yes {
+      background: linear-gradient(135deg, #ff758f, #e05775);
+      color: #fff;
+      border: none;
+      padding: 13px 40px;
+      border-radius: 30px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(224, 87, 117, 0.35);
+      transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .btn-no {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(224, 87, 117, 0.2);
+      color: var(--text-sub);
+      padding: 10px 28px;
+      border-radius: 25px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    /* تثبيت الأرقام الإنجليزية من الشمال لليمين */
+    .birthday-date,
+    .gift-badge,
+    .quiz-question,
+    .birthday-subtext {
+      direction: ltr;
+      unicode-bidi: isolate;
+      display: inline-block;
+    }
+
+    /* شريط تاريخ الميلاد الأنيق */
+    .birthday-banner {
+      background: #ffffff;
+      border: 1px solid #feece8;
+      border-radius: 20px;
+      padding: 12px 18px;
+      margin: 10px 0 16px 0;
+      width: 100%;
+      box-shadow: 0 6px 18px rgba(224, 87, 117, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .birthday-date {
+      color: #702f3b;
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .birthday-subtext {
+      color: var(--text-sub);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    /* شبكة الهدايا الخمسه */
+    .gifts-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin: 10px 0 15px 0;
+      width: 100%;
+      direction: ltr;
+    }
+
+    .gift-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .gift-box {
+      font-size: 3rem;
+      background: #ffffff;
+      padding: 10px;
+      border-radius: 18px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(224, 87, 117, 0.15);
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid #feeafa;
+    }
+
+    .gift-box:hover {
+      transform: translateY(-6px) scale(1.08);
+      box-shadow: 0 12px 24px rgba(224, 87, 117, 0.25);
+    }
+
+    .gift-badge {
+      margin-top: 6px;
+      background: #fde2e4;
+      color: var(--accent-deep);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 12px;
+      border: 1px solid #ffccd5;
+    }
+
+    .tap-hint {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      margin-bottom: 22px;
+    }
+
+    /* رسالة الصور اللطيفة التنبيهية */
+    .toast-msg {
+      background: rgba(255, 240, 243, 0.95);
+      color: #8b3a4a;
+      border: 1px solid #ffccd5;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin: 10px 0 16px 0;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+      animation: fadeIn 0.5s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* القوائم والرسائل */
+    .letter-container {
+      background: #ffffff;
+      padding: 24px 20px;
+      border-radius: 20px;
+      max-height: 480px;
+      overflow-y: auto;
+      text-align: right;
+      line-height: 1.8;
+      font-size: 0.95rem;
+      color: #4a3e3d;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.04);
+      border: 1px solid #feece8;
+      width: 100%;
+    }
+
+    .letter-container h3 {
+      text-align: center;
+      color: #9d2b45;
+      margin-bottom: 14px;
+      font-size: 1.25rem;
+    }
+
+    .letter-container p {
+      margin-bottom: 14px;
+    }
+
+    /* مشغلات الفيديو والوسائط */
+    .custom-video {
+      width: 100%;
+      max-height: 400px;
+      border-radius: 18px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      object-fit: contain;
+      background: #000;
+      margin-top: 10px;
+    }
+
+    .memories-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+      max-height: 460px;
+      overflow-y: auto;
+      padding: 0 4px;
+    }
+
+    .memory-card {
+      background: #ffffff;
+      padding: 14px;
+      border-radius: 18px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.04);
+      border: 1px solid #fce4dc;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    /* تعديل عرض الصور لتعود كروت بارتفاع كافٍ وغير منكمشة */
+    .memory-card img {
+      width: 100%;
+      height: auto;
+      /* يتيح للصورة ضبط ارتفاعها تلقائياً حسب أبعادها الأصلية */
+      max-height: 380px;
+      /* يحدد أقصى ارتفاع للصور الطويلة */
+      border-radius: 14px;
+      margin-bottom: 12px;
+      object-fit: contain;
+      /* يضمن إظهار الصورة كاملة دون قص */
+      background-color: #f8f8f8;
+      /* خلفية ناعمة للمساحات الفارغة إن وجدت */
+      display: block;
+    }
+
+    .memory-card video {
+      width: 100%;
+      border-radius: 14px;
+      margin-bottom: 12px;
+      height: auto;
+      max-height: 420px;
+      object-fit: contain;
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .memory-card p {
+      font-size: 0.92rem;
+      color: #554443;
+      line-height: 1.6;
+      font-weight: 600;
+    }
+
+    /* الكويز / الاختبار */
+    .quiz-container {
+      width: 100%;
+      max-height: 460px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 0 4px;
+    }
+
+    .quiz-card {
+      background: #ffffff;
+      padding: 16px;
+      border-radius: 18px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+      border: 1px solid #fce4dc;
+      text-align: right;
+    }
+
+    .quiz-question {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #702f3b;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .quiz-btn {
+      background: #fdf0ed;
+      border: 1px solid #f8cdcb;
+      color: #63333d;
+      padding: 8px 10px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .quiz-btn:hover {
+      background: var(--accent-coral);
+      color: #fff;
+    }
+
+    .quiz-btn.selected {
+      background: var(--accent-deep);
+      color: #fff;
+      border-color: var(--accent-deep);
+    }
+
+    /* النافذة المنبثقة لمفاجأة الكويز */
+    .quiz-popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.4);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .quiz-popup {
+      background: #ffffff;
+      padding: 24px 20px;
+      border-radius: 24px;
+      width: 85%;
+      max-width: 340px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      border: 2px solid #ffccd5;
+    }
+
+    .quiz-popup h3 {
+      color: #702f3b;
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .quiz-popup p {
+      color: #554443;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+
+    .quiz-popup-btn {
+      background: linear-gradient(135deg, #ff758f, #e05775);
+      color: #fff;
+      border: none;
+      padding: 10px 26px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(224, 87, 117, 0.3);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="hearts-container" id="heartsContainer"></div>
+
+  <audio id="bgAudio" loop src="audio1.mp3"></audio>
+
+  <!-- مفاجأة نهاية الكويز -->
+  <div class="quiz-popup-overlay" id="quizPopupOverlay">
+    <div class="quiz-popup">
+      <h3>شاطر يا مودي! 🎉💕</h3>
+      <p>عارفة إن كل الإجابات بتقول إننا بنكمل بعض دايماً.. ربنا يخليك ليا يا أحسن وأحن راجل في الدنيا! ❤️✨</p>
+      <button class="quiz-popup-btn" onclick="closeQuizPopup()">حبيبتي تسلميلي 💕</button>
+    </div>
+  </div>
+
+  <div class="app-card">
+
+    <div class="page active" id="pageQuestion">
+      <div class="media-box">
+        <img src="girl.jpeg" alt="Dear" id="girlImg" class="avatar-img"
+          onerror="this.src='https://via.placeholder.com/200?text=girl.jpeg'">
+        <video id="noVideo" class="avatar-video" playsinline loop muted>
+          <source src="ved.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <h2 class="question-title">Mody, do you love me🥺?</h2>
+      <div class="emoji-sub"></div>
+
+      <div class="buttons-container">
+        <button class="btn-yes" id="btnYes" onclick="handleYes()">!!💕Yes</button>
+        <button class="btn-no" id="btnNo" onclick="handleNo()">...No</button>
+      </div>
+    </div>
+
+    <div class="page" id="pageGifts">
+      <h2 style="color: #702f3b; font-size: 1.1rem; font-weight: 800; direction: ltr; margin-bottom: 12px;">
+        !! 💕💕 ما أكيد بتحبني، هتحب مين غيري يعني
+      </h2>
+      <div class="media-box" style="width: 150px; height: 150px; margin-bottom: 10px;">
+        <img src="smile.jpeg" alt="Smile" class="avatar-img"
+          onerror="this.src='https://via.placeholder.com/200?text=smile.jpeg'">
+      </div>
+
+      <!-- نقل الجملة خارج الكارت وفوق التاريخ -->
+      <div class="birthday-subtext">💕اليوم اللي اتولد فيه أحن واحد في الدنيا</div>
+      <div class="birthday-banner">
+        <div class="birthday-date">🎂 29 . 09 . 2001 🎂</div>
+      </div>
+
+      <div class="gifts-grid">
+        <div class="gift-item" onclick="openGift(1)">
+          <div class="gift-box">🎁</div>
+          <span class="gift-badge">♥️ 1</span>
+        </div>
+        <div class="gift-item" onclick="openGift(2)">
+          <div class="gift-box">🎁</div>
+          <span class="gift-badge">♥️ 2</span>
+        </div>
+        <div class="gift-item" onclick="openGift(3)">
+          <div class="gift-box">🎁</div>
+          <span class="gift-badge">♥️ 3</span>
+        </div>
+        <div class="gift-item" onclick="openGift(4)">
+          <div class="gift-box">🎁</div>
+          <span class="gift-badge">♥️ 4</span>
+        </div>
+        <div class="gift-item" onclick="openGift(5)">
+          <div class="gift-box">🎁</div>
+          <span class="gift-badge">♥️ 5</span>
+        </div>
+      </div>
+
+      <button class="btn-back" onclick="restart()">إعادة البدء ♥️</button>
+    </div>
+
+    <div class="page" id="gift1Page">
+      <h2 style="color: #702f3b; margin-bottom: 6px; font-weight: 800;"> ❤️❤️❤️❤️❤️ </h2>
+
+      <div class="toast-msg" id="toastMsg">متمشيش غير لما تشوف كل الصور 🤍</div>
+
+      <div class="memories-list">
+        <div class="memory-card">
+          <img src="4.jpeg" alt="Memory 4" onerror="this.src='https://via.placeholder.com/300x200?text=4.jpeg'">
+          <p>«اللهم شخصي وسندي للنهاية.. بارك لي فيه واجمعنا على خير دايماً. 💍🤍»</p>
+        </div>
+        <div class="memory-card">
+          <img src="5.jpeg" alt="Memory 5" onerror="this.src='https://via.placeholder.com/300x200?text=5.jpeg'">
+          <p>«في ملامحك أماني، ومعاك كل الدنيا بتهون.. ربّنا يحفظك ليا يا أجمل نصيب. ❤️💍»</p>
+        </div>
+        <div class="memory-card">
+          <img src="6.jpeg" alt="Memory 6" onerror="this.src='https://via.placeholder.com/300x200?text=6.jpeg'">
+          <p> "هّـنِأّکْ شُـخِـصّ تٌـعٌجّـبًنِيِّ طِيِّبًةّ قُلَبًهّ أّشُـعٌر بًرأّحًةّ مًعٌهّ وٌکْلَمًأّ تٌـحًدٍثًـتٌ
+            مًعٌهّ أّشُـعٌر بًأّنِيِّ سًعٍيدًة "</p>
+        </div>
+        <div class="memory-card">
+          <img src="1.jpeg" alt="Memory 1" onerror="this.src='https://via.placeholder.com/300x200?text=1.jpeg'">
+          <p>"متفقين؟ اول ما ترجع هنروح البحر.....وهنمشي لحد ما الشمس تغيب و احنا بنضحك♥️"</p>
+        </div>
+        <div class="memory-card">
+          <img src="2.jpeg" alt="Memory 2" onerror="this.src='https://via.placeholder.com/300x200?text=2.jpeg'">
+          <p>"حاجزة مكانين واحد ليا وواحد لاحلي مهندس في الدنيا. مستنيا قهوتنا سوا♥️"</p>
+        </div>
+        <div class="memory-card">
+          <img src="3.jpeg" alt="Memory 3" onerror="this.src='https://via.placeholder.com/300x200?text=3.jpeg'">
+          <p>"فخورة بيك اووي يا محمد و بكل المجهود اللي بتعمله عشانا ♥️"</p>
+        </div>
+
+        <div class="memory-card">
+          <video controls playsinline class="card-video">
+            <source src="ved2.mp4" type="video/mp4">
+            متصفحك لا يدعم الفيديو.
+          </video>
+          <p>"الحنية كلها في فيديو واحد"♥️</p>
+        </div>
+      </div>
+      <button class="btn-back" onclick="goToGifts()">رجوع للهدايا</button>
+    </div>
+
+    <div class="page" id="gift2Page">
+      <h2 style="color: #702f3b; margin-bottom: 14px; font-weight: 800;">مني ليك 🎶</h2>
+      <video class="custom-video" controls playsinline id="ved3Player">
+        <source src="ved3.mp4" type="video/mp4">
+      </video>
+      <button class="btn-back" onclick="goToGifts()">رجوع للهدايا</button>
+    </div>
+
+    <div class="page" id="gift3Page">
+      <h2 style="color: #702f3b; margin-bottom: 14px; font-weight: 800;">كويز الصراحة 💭</h2>
+      <div class="quiz-container">
+
+<div class="quiz-card" data-quiz="1">
+  <div class="quiz-question">مين فينا اللي بيبعت 10 مسجات ورا بعض لو الثاني اختفى 10 دقائق 📲؟ </div>
+  <div class="quiz-options">
+    <button class="quiz-btn" onclick="selectQuiz(this)">محمد</button>
+    <button class="quiz-btn" onclick="selectQuiz(this)">شروق</button>
+    <button class="quiz-btn" onclick="selectQuiz(this)">احنا الاتنين</button>
+    <button class="quiz-btn" onclick="selectQuiz(this)">ولا حد</button>
+  </div>
+</div>
+
+<div class="quiz-card" data-quiz="2">
+  <div class="quiz-question">مين فينا اللي بيسرح في المكالمة ويرجع يقول: "معلش كنت بتقول إيه 💭؟" </div>
+  <div class="quiz-options">
+    <button class="quiz-btn" onclick="selectQuiz(this)">محمد</button>
+    <button class="quiz-btn" onclick="selectQuiz(this)">شروق</button>
+    <button class="quiz-btn" onclick="selectQuiz(this)">احنا الاتنين</button>
+    <button class="quiz-btn" onclick="selectQuiz(this)">ولا حد</button>
+  </div>
+</div>
+
+<div class="quiz-card" data-quiz="3">
+  <div class="quiz-question">مين فينا اللي ميعرفش يكتم سر مفاجأة أو هدية وممكن يفضح نفسه من كتر المتحمس 🎁؟ </div>
+  <div class="quiz-options">
+    <button class="quiz-btn" onclick="selectQuiz(this)">محمد</button>
+    <button class="quiz-btn" onclick="selectQuiz(this)">شروق</button>
+    <button class="quiz-btn" onclick="selectQuiz(this)">احنا الاتنين</button>
+    <button class="quiz-btn" onclick="selectQuiz(this)">ولا حد</button>
+  </div>
+</div>
+
+<div class="quiz-card" data-quiz="4">
+  <div class="quiz-question">مين فينا اللي بيفضل يخطط للذكريات والتواريخ المناسبة قبلها بشهرين 🗓️؟ </div>
+  <div class="quiz-options">
+    <button class="quiz-btn" onclick="selectQuiz(this)">محمد</button>
+    <button class="quiz-btn" onclick="selectQuiz(this)">شروق</button>
+    <button class="quiz-btn" onclick="selectQuiz(this)">احنا الاتنين</button>
+    <button class="quiz-btn" onclick="selectQuiz(this)">ولا حد</button>
+  </div>
+</div>
+
+<div class="quiz-card" data-quiz="5">
+  <div class="quiz-question">مين فينا اللي لو حصل سوء تفاهم بسيط بيفضل يفكر فيه طول الليل وميعرفش ينام، ومين اللي بينام عادي ويقول "بكرة نحلها🌙"؟ </div>
+  <div class="quiz-options">
+    <button class="quiz-btn" onclick="selectQuiz(this)">محمد</button>
+    <button class="quiz-btn" onclick="selectQuiz(this)">شروق</button>
+    <button class="quiz-btn" onclick="selectQuiz(this)">احنا الاتنين</button>
+    <button class="quiz-btn" onclick="selectQuiz(this)">ولا حد</button>
+  </div>
+</div>
+
+<div class="quiz-card" data-quiz="6">
+  <div class="quiz-question">مين فينا اللي لو التاني رد بعد ساعتين بيبقى عايز يسأله: "كنت فين وكل ده بتعمل إيه؟" بس بيتكسف يسأل🤫؟ </div>
+  <div class="quiz-options">
+    <button class="quiz-btn" onclick="selectQuiz(this)">محمد</button>
+    <button class="quiz-btn" onclick="selectQuiz(this)">شروق</button>
+    <button class="quiz-btn" onclick="selectQuiz(this)">احنا الاتنين</button>
+    <button class="quiz-btn" onclick="selectQuiz(this)">ولا حد</button>
+  </div>
+</div>
+
+<div class="quiz-card" data-quiz="7">
+  <div class="quiz-question">مين فينا اللي بيستنى الويك إند أو يوم الإجازة بفارغ الصبر عشان يضمن إننا هنقعد نتكلم براحتنا من غير ما حد يستعجل التاني☕؟ </div>
+  <div class="quiz-options">
+    <button class="quiz-btn" onclick="selectQuiz(this)">محمد</button>
+    <button class="quiz-btn" onclick="selectQuiz(this)">شروق</button>
+    <button class="quiz-btn" onclick="selectQuiz(this)">احنا الاتنين</button>
+    <button class="quiz-btn" onclick="selectQuiz(this)">ولا حد</button>
+  </div>
+</div>
+
+<div class="quiz-card" data-quiz="8">
+  <div class="quiz-question">مين فينا اللي بيموت من الفضول لما التاني يقوله "جايبلك مفاجأة معايا وأنا راجع" ويفضل يزن عشان يعرفها 🧐؟ </div>
+  <div class="quiz-options">
+    <button class="quiz-btn" onclick="selectQuiz(this)">محمد</button>
+    <button class="quiz-btn" onclick="selectQuiz(this)">شروق</button>
+    <button class="quiz-btn" onclick="selectQuiz(this)">احنا الاتنين</button>
+    <button class="quiz-btn" onclick="selectQuiz(this)">ولا حد</button>
+  </div>
+</div>
+
+      </div>
+      <button class="btn-back" onclick="goToGifts()">رجوع للهدايا</button>
+    </div>
+
+    <div class="page" id="gift4Page">
+      <h2 style="color: #702f3b; margin-bottom: 14px; font-weight: 800;"> كل صورة ليك أحلى من اللي قبلها، انت الحكاية
+        كلها ❤️</h2>
+      <video class="custom-video" controls playsinline id="ved4Player">
+        <source src="ved4.mp4" type="video/mp4">
+      </video>
+      <button class="btn-back" onclick="goToGifts()">رجوع للهدايا</button>
+    </div>
+
+    <div class="page" id="gift5Page">
+      <div class="letter-container">
+        <h3>محمد ♥️</h3>
+        <p>النهاردة عيد ميلادك وانا كان نفسي اعايدك بأكتر كلام طالع من قلبي</p>
+        <p>من زمان نفسي اقولك الكلام ده كله مرة واحدة<br>من قلبي ليك</p>
+        <p>انت حد جميل أوي بصراحة. لقيت فيك الحاجات اللي كان نفسي الاقيها في شريك حياتي.<br>حد بجد مريح في التعامل،
+          برتاح في الكلام معاك وببقى مبسوطة جداً. الوقت اللي بنتكلم فيه مع بعض ببقى مبسوطة بجد وبحس ان اليوم كله بقى حلو
+          😊</p>
+        <p>حسيت معاك بمشاعر كتير حلوة عمري ما حسيتها قبل كده. انت أول حد احس معاه بالمشاعر الجميلة دي.</p>
+
+        <p style="color: #8b3a4a; font-weight: 700;">_محمد اقول عنه اي ولا اي... ماشاء الله عليه بجد♥️_</p>
+        <p>_كل يوم بتعلق فيك اكتر من اليوم اللي قبله_<br>
+          _كل يوم بكتشف فيك حاجة جديدة حلوة_<br>
+          _بحب تفكيره بحب ان مستقل بتفكيروا مبيحبش يدخل حد في حياته مبحبش حد يعرف عنه حاجة_<br>
+          _عنده الخصوصية دي مهمة اووي عنده ودي حاجة انا حباها اووي فيه لاني كان نفسي بجد الشخص اللي معايا حياتنا تبقي
+          مستقلة بينا محدش يعرف عننا حاجة لان انا اتربيت علي كده واتعودت علي كده_<br>
+          _مش بستغرب لما الاقي اي حاجة حلوة فيه_<br>
+          _لان انا عارفة ان محمد انسان جميل_</p>
+
+        <p>_بحب اووي لما اسمعه وهو بيتكلم_<br>
+          _مبقاش عايزاه يسكت_<br>
+          _ببقا مبسوطة لما يرن عليا ونقعد نتكلم_<br>
+          _بحب اسمعه وهو بيتكلم عن حياتنا مع بعض_<br>
+          _عمري ما زهقت من كلامه_<br>
+          _مهما اتكلم عن اي حاجة ببقي عايزة اسمعه_</p>
+
+        <p>انا عايزة اقولك حاسة معاك بالأمان، لان انت راجل بمعنى الكلمة. حد بيعرف يتحمل المسؤولية وفي نفس الوقت
+          حنين.<br>
+          انت وجودك في حياتي حاجة جميلة، انا حابة وجودك في حياتي ومبسوطة بيه.<br>
+          لما بنتكلم وبنهزر ونضحك... كل حاجة بينا بجد انا بحبها.<br>
+          نفسي نفضل كده دايماً متفاهمين مع بعض ونقدَّر بعض وميهونش علينا نزعل من بعض.</p>
+
+        <p>بحب كل حاجة بتعملها عشاني. خوفك عليا، حُبك ليا، واهتمامك بيا حتى في أبسط التفاصيل.<br>
+          بتحترم مشاعري، بتخاف على زعلي، مبتحبش تشوفني زعلانة. انا فاكرة كويس أوي لما بكون زعلانة عمرك ما بتسيبني. حتى
+          لما يحصل ما بينا خلاف انت بتتناقش معايا لحد ما نتفق، إنما ما بتحبش تشوفني زعلانة. راحتي عندك مهمة ودي بالدنيا
+          عندي.</p>
+
+        <p>كفاية انا عارفة ومتأكدة ان انت مُستعد تجيبلي كل اللي انا عايزاه، يمكن كمان قبل ما اطلبها منك. تقولي "قولي بس
+          انتي عايزة ايه تجيلك الحاجة اللي انتي عايزاه".</p>
+
+        <p>ولما بقولك "يا محمد" تقولي "ايوة يا روح الروح" 🥹 الكلمة دي لوحدها بتطيرني من الفرحة. بتحسني اني غالية عليك
+          اوي.</p>
+
+        <p>لما دايماً اقولك على المرجيحة... انا عمري ما جيه في بالي ان احنا نجيبها، بس انت لقيت انا بحبها قولتلي "هجيبلك
+          واحدة". قولتلك "لو حد شافها هيقولك انت جايبها لبنتك" قولتلي "لا هقولهم هجيبها لحبيبتي". مبنساش كلامك الحلو
+          ليا. كل كلامك اللي بتقوله جوا قلبي بجد.</p>
+
+        <p>بالنسبالك اي حاجة بقولها مهمة. تقولي "ايه انا سامعك قولي". بقولك "ده حاجة تافهة" تقولي "انا عايز اسمعها، بحب
+          اسمعك قولي".</p>
+
+        <p>بحب دايماً لما تقولي "بحمد ربنا كل يوم على وجودك في حياتي، انا مبسوط بيكي". تقولي ان دي كانت اجمل صدفة حصلت
+          ليك، انا عوض ربنا ليك. وانا كمان والله بحمد ربنا عليك كل يوم</p>
+
+        <p>بحب كل كلامك وبيفضل معلق في الذاكرة مبيتنسيش. انت بتقولي "انت ذاكرتك حلوة ومبتنسيش غير اللي انتي عايزاه". احب
+          اقولك كلامك بقى من الحاجات اللي بخلي بالي منها وبفضل فاكراها ومبتتنسيش.</p>
+
+        <p>وكل يوم بيعدي عليا بحس اني مرتاحة معاك اكتر، مبسوطة بوجودك اكتر واكتر.</p>
+
+        <p>_دايما بيقولي "اللي انتي عايزاه قولي ليا وانا اعملك اللي انتي عايزاه"_<br>
+          _بجد عايز يسعدني بكل الطرق_<br>
+          _ده خلاني عايزة اعرف الحاجات اللي تسعده واعملهالوا عشان يبقي مبسوط_</p>
+
+        <p>_ببقا سعيدة جدا وهو مبسوط_<br>
+          _وبضايق جدا فوق ما هو يتخيل لما هو يكون تعبان او زعلان_<br>
+          _بحس انا اللي تعبانة_<br>
+          _ببقا عايزة اريحه بجد_</p>
+
+        <p>_نفسي اووي يعرف انه لما ياخد باله من صحته_<br>
+          _مش بس عشانه هو_<br>
+          _لا عشاني انا كمان_<br>
+          _لاني مبقدرش اسمع ان هو تعبان او في حاجة_</p>
+
+        <p style="color: #8b3a4a; font-size: 1rem; font-weight: 700;">_ببقا عايزة اقوله كل يوم..._<br>
+          _نفسي اشوفك بجد يا محمد ♥️_</p>
+
+        <p style="text-align: center; font-size: 1.1rem; font-weight: 800; color: #9d2b45; margin-top: 18px;">
+          اخر حاجة عايزة اقولهالك...<br>
+          كل سنة وانت معايا ♥️<br>
+          <br>
+          من خطيبتك الحبيبة :<br> شروق ♥️
+        </p>
+      </div>
+      <button class="btn-back" onclick="goToGifts()">رجوع للهدايا</button>
+    </div>
+
+  </div>
+
+  <script>
+    const container = document.getElementById('heartsContainer');
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart-floating';
+      const heartsArray = ['♥️', '💖', '💕', '🌸', '❤️'];
+      heart.innerText = heartsArray[Math.floor(Math.random() * heartsArray.length)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+      heart.style.fontSize = (Math.random() * 14 + 14) + 'px';
+      container.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 4200);
+    }
+
+    function burstHearts(count = 35) {
+      for (let i = 0; i < count; i++) {
+        setTimeout(createHeart, i * 50);
+      }
+    }
+
+    const btnYes = document.getElementById('btnYes');
+    const btnNo = document.getElementById('btnNo');
+    const girlImg = document.getElementById('girlImg');
+    const noVideo = document.getElementById('noVideo');
+    const bgAudio = document.getElementById('bgAudio');
+
+    const noTexts = [
+      "? 🥺Wait... are you sure",
+      ", 💔nah that's not right",
+      "... 🥺Please",
+      " 🥺come on just think about it",
+      " 😭 you're being so mean ",
+      "مستحيل تقولي لأ! 🙈"
+    ];
+    let noClickCount = 0;
+    let yesScale = 1;
+
+    function handleNo() {
+      yesScale += 0.28;
+      btnYes.style.transform = `scale(${yesScale})`;
+      btnNo.innerText = noTexts[noClickCount % noTexts.length];
+      noClickCount++;
+
+      girlImg.style.display = 'none';
+      noVideo.style.display = 'block';
+      noVideo.play().catch(e => console.log(e));
+    }
+
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+    }
+
+    function handleYes() {
+      noVideo.pause();
+      showPage('pageGifts');
+    }
+
+    function openGift(giftNumber) {
+      burstHearts(35);
+
+      // إيقاف الصوت والخلفيات والأصوات كافة فور الخروج والتنقل
+      stopMedia();
+
+      if (giftNumber === 1) {
+        showPage('gift1Page');
+        const toast = document.getElementById('toastMsg');
+        toast.style.display = 'block';
+        setTimeout(() => {
+          toast.style.display = 'none';
+        }, 60000);
+      }
+      if (giftNumber === 2) showPage('gift2Page');
+      if (giftNumber === 3) showPage('gift3Page');
+      if (giftNumber === 4) showPage('gift4Page');
+      if (giftNumber === 5) {
+        showPage('gift5Page');
+        bgAudio.play().catch(e => console.log("Audio play constraint:", e));
+      }
+    }
+
+    /* إيقاف كافة وسائل الميديا (جميع الفيديوهات داخل الصفحة والمقاطع الصوتية) عند الرجوع أو التنقل */
+    function stopMedia() {
+      bgAudio.pause();
+      bgAudio.currentTime = 0;
+
+      // إيقاف فيديوهات الهدايا
+      const videos = document.querySelectorAll('video');
+      videos.forEach(v => {
+        v.pause();
+      });
+    }
+
+    function goToGifts() {
+      stopMedia();
+      showPage('pageGifts');
+    }
+
+    function restart() {
+      stopMedia();
+      yesScale = 1;
+      noClickCount = 0;
+      btnYes.style.transform = `scale(1)`;
+      btnNo.innerText = "No...";
+
+      noVideo.pause();
+      noVideo.currentTime = 0;
+      noVideo.style.display = 'none';
+      girlImg.style.display = 'block';
+
+      showPage('pageQuestion');
+    }
+
+    /* التفاعل مع أزرار الكويز وإظهار المفاجأة عند الانتهاء */
+    function selectQuiz(btn) {
+      const parent = btn.parentElement;
+      parent.querySelectorAll('.quiz-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+
+      // التحقق لو كمل إجابة السؤال الثامن والأخير
+      const quizCard = parent.closest('.quiz-card');
+      if (quizCard && quizCard.getAttribute('data-quiz') === '8') {
+        setTimeout(() => {
+          burstHearts(50);
+          document.getElementById('quizPopupOverlay').style.display = 'flex';
+        }, 300);
+      }
+    }
+
+    function closeQuizPopup() {
+      document.getElementById('quizPopupOverlay').style.display = 'none';
+    }
+  </script>
+</body>
+
+</html>
